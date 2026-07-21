@@ -1,0 +1,30 @@
+{
+    "name": "orange/collector",
+    "description": "Event data collector/aggregator.",
+    "type": "library",
+    "homepage": "https://github.com/ProjectOrangeBox/collector",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Don Myers",
+            "email": "donmyers@me.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/ProjectOrangeBox/collector/issues",
+        "source": "https://github.com/ProjectOrangeBox/collector"
+    },
+    "require": {
+        "php": ">=8.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^13.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "peels\\collector\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
