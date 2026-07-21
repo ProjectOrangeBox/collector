@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "peels\\collector\\": "src/"
+            "orange\\collector\\": "src/"
         }
     },
     "minimum-stability": "dev",

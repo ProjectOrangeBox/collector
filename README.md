@@ -5,7 +5,7 @@ Named, singleton-per-key collections that gather values under string keys and fl
 ## Example
 
 ```php
-use peels\collector\Collector;
+use orange\collector\Collector;
 
 $breadcrumbs = Collector::getInstance('breadcrumbs');
 

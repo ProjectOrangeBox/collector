@@ -1,6 +1,6 @@
 <?php
 
-use peels\collector\Collector;
+use orange\collector\Collector;
 
 require __DIR__ . '/src/CollectorInterface.php';
 require __DIR__ . '/src/CollectorException.php';

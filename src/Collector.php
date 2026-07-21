@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace peels\collector;
+namespace orange\collector;
 
-use peels\collector\CollectorInterface;
+use orange\collector\CollectorInterface;
 
 class Collector implements CollectorInterface
 {
