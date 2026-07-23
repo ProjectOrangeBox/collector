@@ -38,7 +38,7 @@ class Collector implements CollectorInterface
     public static function getInstance(?string $name = null, array $config = [])
     {
         // name your collection
-        $name = $name ?? self::$defaultKey;
+        $name ??= self::$defaultKey;
 
         if (!isset(self::$instances[$name])) {
             self::$instances[$name] = new self($config);
@@ -78,29 +78,13 @@ class Collector implements CollectorInterface
 
     public function has(array|string|null $arg1 = null): bool
     {
-        $has = true;
-
-        foreach ($this->convert2Array($arg1) as $key) {
-            if (!isset($this->collection[$key])) {
-                $has = false;
-                break;
-            }
-        }
-
+        $has = array_all($this->convert2Array($arg1), fn($key) => isset($this->collection[$key]));
         return $has;
     }
 
     public function hasOne(array|string $arg1): bool
     {
-        $has = false;
-
-        foreach ($this->convert2Array($arg1) as $key) {
-            if (isset($this->collection[$key])) {
-                $has = true;
-                break;
-            }
-        }
-
+        $has = array_any($this->convert2Array($arg1), fn($key) => isset($this->collection[$key]));
         return $has;
     }
 
@@ -178,21 +162,14 @@ class Collector implements CollectorInterface
 
     protected function format(int $type, array $array, array $options, bool $reset = true): string|array
     {
-        switch ($type) {
-            case self::ARRAY:
-                $formatted = $this->formatAsArray($array, $options);
-                break;
-            case self::HTML:
-                // html
-                $formatted = $this->formatAsHtml($array, $options);
-                break;
-            case self::JSON:
-                // JSON
-                $formatted = $this->formatAsJson($array, $options);
-                break;
-            default:
-                throw new CollectorException('Unknown format ' . $type);
-        }
+        $formatted = match ($type) {
+            self::ARRAY => $this->formatAsArray($array, $options),
+            // html
+            self::HTML => $this->formatAsHtml($array, $options),
+            // JSON
+            self::JSON => $this->formatAsJson($array, $options),
+            default => throw new CollectorException('Unknown format ' . $type),
+        };
 
         if ($reset) {
             $this->asArray();
