@@ -90,6 +90,8 @@ class Collector implements CollectorInterface
 
     public function collect(array|string|null $arg1 = null): array|string
     {
+        $collectArray = [];
+
         foreach ($this->convert2Array($arg1) as $key) {
             $collectArray[$key] = $this->collection[$key] ?? [];
         }
